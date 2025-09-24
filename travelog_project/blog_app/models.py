@@ -9,4 +9,5 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     category = models.CharField(max_length=50, choices=[('Travel', 'подорож'), ('Adventure','пригоди')])
 
-
+    def __str__(self):
+        return self.title

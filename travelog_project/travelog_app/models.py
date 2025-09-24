@@ -8,3 +8,6 @@ class Trip(models.Model):
     end_date = models.DateField()
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     posts = models.ManyToManyField('blog_app.Post', blank=True)
+
+    def __str__(self):
+        return self.name
