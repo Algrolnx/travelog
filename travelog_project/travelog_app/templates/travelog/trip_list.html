@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+{% block title %}Поїздки - Travelog{% endblock %}
+{% block content %}
+    <h2>Поїздки</h2>
+    {% if trips %}
+        <div class="row">
+            {% for trip in trips %}
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ trip.name }}</h5>
+                            <p class="card-text">{{ trip.description|truncatewords:30 }}</p>
+                            <p class="card-text"><small class="text-muted">Дати: {{ trip.start_date|date:"d.m.Y" }} - {{ trip.end_date|date:"d.m.Y" }}</small></p>
+                            <a href="{% url 'trip_detail' trip.pk %}" class="btn btn-primary">Детальніше</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Поки що немає поїздок.</p>
+    {% endif %}
+{% endblock %}

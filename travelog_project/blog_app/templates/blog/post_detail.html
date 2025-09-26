@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+{% block title %}{{ post.title }} - Travelog{% endblock %}
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">{{ post.title }}</h2>
+            <p class="card-text">{{ post.content }}</p>
+            <p class="card-text"><small class="text-muted">Автор: {{ post.author.user.username }} | Опубліковано: {{ post.created_at|date:"d.m.Y" }} | Оновлено: {{ post.updated_at|date:"d.m.Y" }}</small></p>
+            {% if post.category %}
+                <p class="card-text"><small class="text-muted">Категорія: {{ post.category }}</small></p>
+            {% endif %}
+            <a href="{% url 'post_list' %}" class="btn btn-secondary">Назад до публікацій</a>
+        </div>
+    </div>
+{% endblock %}

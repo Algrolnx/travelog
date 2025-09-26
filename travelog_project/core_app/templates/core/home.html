@@ -1,0 +1,13 @@
+{% extends 'core/base.html' %}
+{% block title %}Головна - Travelog{% endblock %}
+{% block content %}
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Ласкаво просимо до Travelog!</h1>
+        <p class="lead">Діліться своїми пригодами та відкривайте нові місця разом з нами.</p>
+        {% if user.is_authenticated %}
+            <p>Вітаємо, {{ user.username }}! <a href="{% url 'create_post' %}" class="btn btn-primary">Створити публікацію</a></p>
+        {% else %}
+            <p><a href="{% url 'register' %}" class="btn btn-primary">Зареєструватися</a> або <a href="{% url 'login' %}" class="btn btn-secondary">Увійти</a></p>
+        {% endif %}
+    </div>
+{% endblock %}

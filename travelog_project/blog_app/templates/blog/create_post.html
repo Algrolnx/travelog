@@ -1,0 +1,11 @@
+{% extends 'core/base.html' %}
+{% block title %}Створити публікацію - Travelog{% endblock %}
+{% block content %}
+    <h2>Створити нову публікацію</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Зберегти</button>
+        <a href="{% url 'post_list' %}" class="btn btn-secondary">Скасувати</a>
+    </form>
+{% endblock %}
