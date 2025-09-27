@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import render, get_object_or_404
 from .models import Post
+from .forms import PostForm
 from django.contrib.auth.decorators import login_required
 
 def post_list(request):
@@ -14,10 +15,13 @@ def post_detail(request, pk):
 @login_required
 def create_post(request):
     if request.method == 'POST':
-        title = request.POST.get('title')
-        content = request.POST.get('content')
-        if title and content:
-            Post.objects.create(title=title, content=content, author=request.user)
-            return redirect('post_list')
-    return render(request, 'blog/create_post.html')
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user.profile 
+            post.save()
+            return redirect('post_list') 
+    else:
+        form = PostForm() 
 
+    return render(request, 'blog/create_post.html', {'form': form})
