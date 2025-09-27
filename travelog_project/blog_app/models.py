@@ -7,7 +7,7 @@ class Post(models.Model):
     author = models.ForeignKey(Profile, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    category = models.CharField(max_length=50, choices=[('Travel', 'подорож'), ('Adventure','пригоди')])
+    category = models.CharField(max_length=50, choices=[('travel', 'Подорож'), ('adventure', 'Пригода')])
 
     def __str__(self):
-        return self.title
+        return self.title  
